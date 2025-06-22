@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IMMD - Activities</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+ <style>
+        /* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f6f9;
+  color: #2d3748;
+  line-height: 1.7;
+
+}
+
+header {
+  background-color: #ffffff;
+  color: #2c3e50;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.logo img {
+  width: 80px;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #2c3e50;
+  cursor: pointer;
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  z-index: 1001;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  color: #2c3e50;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 15px;
+  display: block;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li:hover > a {
+  background-color: #f0f4f8;
+  color: #1e40af;
+  border-radius: 8px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu li a {
+  padding: 8px 15px;
+  display: block;
+  color: #2c3e50;
+  background-color: #fff;
+  transition: background-color 0.3s;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f0f4f8;
+  color: #1e40af;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.section-title {
+  font-size: 28px;
+  color: #1e40af;
+  margin-bottom: 24px;
+  border-bottom: 3px solid #93c5fd;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+.activity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 60px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.activity.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.activity:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.activity-img {
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+.activity-img img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.activity-img p {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.activity-text {
+  flex: 2 1 400px;
+  text-align: justify;
+}
+
+.activity-text h3 {
+  color: #1e40af;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.activity-text p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+footer {
+  background-color: #1e3a8a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    background-color: #fff;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav ul li {
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .dropdown {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .dropdown > a {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    font-weight: 500;
+    color: #2c3e50;
+    text-decoration: none;
+    background-color: #fff;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+  }
+
+  .dropdown > a::after {
+    content: ' ▼';
+    font-size: 0.7em;
+    float: right;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: static;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 0;
+    margin: 0;
+    animation: dropdownFade 0.3s ease-in-out;
+  }
+
+  .dropdown > a:focus + .dropdown-menu,
+  .dropdown > a:active + .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #333;
+    border-top: 1px solid #f0f0f0;
+    background-color: #fafafa;
+    transition: background-color 0.3s;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #f0f4f8;
+  }
+
+  .activity {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .activity-img img {
+    width: 100%;
+    height: auto;
+  }
+
+  .activity-text {
+    text-align: justify;
+  }
+}
+
+@keyframes dropdownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+       
+    </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav-bar">
+      <div class="logo">
+        <a href="index.html"><img src="src/logo.png" alt="IMMD Logo" /></a>
+      </div>
+      <button class="menu-toggle open">&#9776;</button>
+      <button class="menu-toggle close" style="display: none;">&times;</button>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li class="dropdown">
+            <a href="#">Research</a>
+            <ul class="dropdown-menu">
+              <li><a href="facilities.html">Facilities</a></li>
+              <li><a href="activities.html">Activities</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">Services</a>
+            <ul class="dropdown-menu">
+              <li><a href="testing-consultancy.html">Testing Consultancy</a></li>
+              <li><a href="experimental-consultancy.html">Experimental Consultancy</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">Career</a>
+            <ul class="dropdown-menu">
+              <li><a href="ritp-consultancy.html">RITP Consultancy</a></li>
+              <li><a href="sitp-consultancy.html">SITP Consultancy</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">Insights</a>
+            <ul class="dropdown-menu">
+              <li><a href="collaboration.html">Collaborations</a></li>
+              <li><a href="mou.html">MoUs</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="activity-section" style="  padding: 20px;">
+
+    <div class="activity" style="margin-top: 30px;">
+
+      <div class="activity-text">
+        <h3 class="section-title">Activities</h3>
+        <p>
+          We are actively working on various research fields such as Crystallography, Crystal growth, Nanomaterials,
+          Spectroscopy and DFT calculations, Thermal kinetics approaches and Biomaterials for the development of
+          advanced functional materials and their potential use.
+        </p>
+      </div>
+    </div>
+    <div class="activity">
+
+      <div class="activity-text">
+        <h3>Crystallography</h3>
+        <p>We are synthesizing Organic and Inorganic crystalline materials at FMRL centre using solution process,
+          mechanochemical synthesis method and solid state reactions. Synthesized materials are purified by repeated
+          recrystallization processes and are subjected to single crystal X-ray diffraction study. The collected
+          diffracted data will be analyzed and solved the crystal structure solved by directed methods (SHELXL-97) and
+          refined by a full matrix (SHELXL-97) least square procedure.</p>
+      </div>
+
+      <div class="activity-img">
+        <img src="src/act-1.png" alt="Crystal Growth">
+        <p>The ORTEP molecular structure of the Thiourea Silver (I) Nitrate crystalline compound, showing displacement
+          ellipsoids drawn at 30% probability level. H atoms are removed for structure clarity.</p>
+      </div>
+    </div>
+
+    <div class="activity">
+
+      <div class="activity-text">
+        <h3>Crystal Growth</h3>
+        <p>Growth of single crystals is considered to be the pillars of advanced technology. “Who dominated, materials
+          dominated technology”. To expedite research interest in crystal growth, it demands deep knowledge of science
+          and technology since single crystals have vital importance in the technological world. Crystal growth never
+          has an independent individuality and is the part of crystallography until few centuries back.
+          Many single crystals play vital role in important areas of service to the humanity, namely science, medicine,
+          engineering, technology, defence and space science. In addition to above, crystals are mainly used in
+          piezoelectric, photo-refractive, acousto-optic, electro-optic, photo-elastic applications. Crystals also have
+          importance in radiation detectors, transducers, laser hosts, harmonic generators, parametric amplifiers, Bragg
+          cells, etc. Thus the above mentioned developments could be achieved only by the availability of single
+          crystals like silicon, germanium, gallium, gallium arsenide and growth of new nonlinear optical organic,
+          inorganic and semi-organic single crystals.
+        </p>
+      </div>
+    </div>
+
+    <div class="activity">
+
+      <div class="activity-text">
+        <h3>Solution Growth</h3>
+        <p>Solution growth is a simple, cost advantage method for the production of technologically important single
+          crystals. It is the most widely used technique for the growth of crystals, when the starting materials are
+          unstable at high temperatures. This method mainly depends on the solubility of solute on the thermodynamically
+          conditions like temperature, pressure and solvent concentration. Hence, this method is adopted for the
+          materials having moderate to high solubility in the temperature range from RT to 100 °C at atmospheric
+          pressure. Bulk sized single crystals having high solubility with respect to the temperature, can be grown from
+          solution growth.</p>
+      </div>
+
+      <div class="activity-img">
+        <img src="src/act-2.png" alt="Melt Growth">
+        <p>Solution Grown single crystals grown at FMRL Laboratory</p>
+      </div>
+    </div>
+    <div class="activity">
+
+      <div class="activity-text">
+        <h3>Melt Growth</h3>
+        <p>Melt growth is the process of crystallization of fusion and resolidification of the pure material from a melt
+          by cooling the liquid below its freezing point. In this technique, apart from possible contamination from
+          crucible materials and surrounding atmosphere, no impurities are introduced in the growth process and the rate
+          or growth is normally much higher than possible by other methods. Melt growth is commercially the most
+          important method of crystal growth.</p>
+      </div>
+
+      <div class="activity-img">
+        <img src="src/act-3.png" alt="Melt Growth">
+        <p>Cut-Polished (a) LaFeO3 and (b) LaSrFeO3 Single Crystals using optical floating zone method</p>
+      </div>
+    </div>
+    <div class="activity">
+
+      <div class="activity-text">
+        <h3>Nanomaterials</h3>
+        <p>Nanotechnology is the general term for designing and making materials which depends on specific structure at
+          the nanoscale (100 nm or less). It includes devices or systems made by manipulating individual atoms or
+          molecules, as well as materials which contain very small structures. They may be in the form of particles,
+          tubes, rods or fibers. The materials in the form of nano scale shows improved physico-chemical properties than
+          that are in the in the bulk form.</p>
+      </div>
+
+      <div class="activity-img">
+        <img src="src/act-4.png" alt="Melt Growth">
+        <p>(a & b) development of LaFeO3 nanoparticles on rGO layers in 5 µm scale and
+          (c & d) spherical morphology of LaFeO3 nanoparticles on rGO layers in 2 µm scale
+        </p>
+      </div>
+    </div>
+    <div class="activity">
+
+      <div class="activity-text">
+        <h3>Spectroscopy and DFT Calculations</h3>
+        <p>Spectroscopy is a potential tool for studying the structures of atoms and molecules. The large number of
+          wavelengths emitted by these systems makes it possible to inspect their structures in detail, including the
+          electron configurations of ground and various excited states. Spectroscopy also provides a precise analytical
+          method for finding the constituents in material having unknown chemical composition. In a typical
+          spectroscopic analysis, concentration of a few parts per million of a trace element in a material can be
+          detected through its spectrum.
+          Density functional theory (DFT) is a quantum-mechanical (QM) computational method used in chemistry and
+          physics to calculate the electronic structure of atoms, molecules and solids. The real forte of DFT is its
+          favourable price/performance ratio compared with electron-correlated wave function-based methods such as
+          Møller–Plesset perturbation theory or coupled cluster. Thus, more relevant molecular systems can be studied
+          with sufficient accuracy, thereby expanding the predictive power inherent in electronic structure theory. As a
+          result, DFT is now by far the most widely used electronic structure method. The huge importance of DFT in
+          physics and chemistry is evidenced by the 1998 award of the Nobel Prize to Walter Kohn ‘for his development of
+          the density-functional theory’.
+        </p>
+      </div>
+      <div class="activity-img">
+        <img src="src/act-5.png" alt="Melt Growth">
+        <p>(a) DOS spectrum and (b) HOMO-LUMO DFT diagram of Acetoxy derivative molecule</p>
+      </div>
+    </div>
+    <div class="activity">
+
+      <div class="activity-text">
+        <h3>Thermal kinetics Approaches</h3>
+        <p>Methods of thermal analysis and their kinetic models are most widely used in almost all the branches, from
+          foods and pharmacy to materials, glasses and polymers where changes in thermal activities of the sample are
+          monitored under different temperature conditions like controlled heating and cooling atmospheres. We are
+          focusing research work on the thermal kinetic studies to understand the fundamental characteristics of
+          materials as well as their large range of utility in quality control, improvement and research in industry and
+          academia.</p>
+      </div>
+      <div class="activity-img">
+        <img src="src/act-6.png" alt="Melt Growth">
+        <p>(a) TG, (b) DTG and (c) DTA curves of Phenyl derivative molecule at different heating rates (5, 10 and 15 ºC
+          min-1).</p>
+      </div>
+    </div>
+    <div class="activity">
+
+      <div class="activity-text">
+        <h3>Bone materials</h3>
+        <p>Bone is a composite of proteins such as collagen and minerals such as calcium. Together these materials give
+          bone a unique combination of strength and elasticity. We at FMRL centre studying the effect of temperature on
+          human bone in order to understand their structure, porosity, strength, thermal stability and mechanical
+          stabilities. </p>
+      </div>
+
+      <div class="activity-img">
+        <img src="src/act-7.png" alt="Melt Growth">
+        <p>SEM Photographs of human bones sintered at different temperatures ranging from 250 to 750 ºC.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2025 IMMD. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const openBtn = document.querySelector(".menu-toggle.open");
+    const closeBtn = document.querySelector(".menu-toggle.close");
+    const navLinks = document.querySelector(".nav-links");
+
+    openBtn.addEventListener("click", () => {
+      navLinks.classList.add("show");
+      openBtn.style.display = "none";
+      closeBtn.style.display = "block";
+    });
+
+    closeBtn.addEventListener("click", () => {
+      navLinks.classList.remove("show");
+      openBtn.style.display = "block";
+      closeBtn.style.display = "none";
+    });
+
+    document.querySelectorAll('.dropdown > a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          const dropdownMenu = link.nextElementSibling;
+          dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Reveal all activities after load
+    const activityElements = document.querySelectorAll('.activity');
+    activityElements.forEach((el) => {
+      el.classList.add('show');
+    });
+  });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IMMD-Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+
+        header {
+            background-color: #ffffff;
+            color: #2c3e50;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .logo img {
+            width: 80px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 30px;
+            color: #2c3e50;
+            cursor: pointer;
+            position: absolute;
+            top: 22px;
+            right: 20px;
+            z-index: 1001;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 15px;
+            display: block;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li:hover>a {
+            background-color: #f0f4f8;
+            color: #1e40af;
+            border-radius: 8px;
+
+        }
+
+          .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            top: 100%;
+            left: 0;
+            min-width: 180px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 0;
+            /* remove default padding */
+            margin: 0;
+            /* ensure no extra margin */
+        }
+
+
+        .dropdown-menu li {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu li a {
+            padding: 8px 15px;
+            display: block;
+            color: #2c3e50;
+            background-color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f0f4f8;
+            color: #1e40af;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+   .facility-section {
+      padding: 40px 20px;
+      background-color: #f9fafb;
+    }
+
+    .facility {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+    }
+
+    .facility.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .facility-img,
+    .facility-text {
+      flex: 1 1 45%;
+    }
+
+    .facility-img img {
+      width: 100%;
+      border-radius: 12px;
+      height: 285px;
+    }
+
+    .facility-text {
+      background: #ffffff;
+      border-radius: 12px;
+      text-align: justify;
+      padding: 5px;
+    }
+
+    .facility-text h3 {
+      color: #1e40af;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .facility-text p {
+      margin-bottom: 10px;
+      color: #333;
+      font-size: 1rem;
+    }
+
+        footer {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+    
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                background-color: #fff;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+
+
+            nav ul li {
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+  }
+
+  .dropdown {
+    position: relative;
+    width: 100%;
+    max-width: 320px; /* Keeps dropdown centered and compact */
+    margin: 0 auto;
+  }
+
+  .dropdown > a {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    font-weight: 500;
+    color: #2c3e50;
+    text-decoration: none;
+    background-color: #fff;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+  }
+
+  .dropdown > a::after {
+    content: ' ▼';
+    font-size: 0.7em;
+    float: right;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: static;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 0;
+    margin: 0;
+    animation: dropdownFade 0.3s ease-in-out;
+  }
+
+  .dropdown > a:focus + .dropdown-menu,
+  .dropdown > a:active + .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #333;
+    border-top: 1px solid #f0f0f0;
+    background-color: #fafafa;
+    transition: background-color 0.3s;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #f0f4f8;
+  }
+
+  
+  .facility,
+      .facility.reverse {
+        flex-direction: column !important;
+        text-align: center;
+      }
+
+      .facility-img,
+      .facility-text {
+        flex: 1 1 100%;
+      }
+
+      .facility-img img {
+        height: auto;
+        max-width: 100%;
+      }
+
+      .nav-bar {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+}
+
+/* Smooth dropdown animation */
+@keyframes dropdownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+       
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav-bar">
+            <div class="logo">
+                <a href="index.html"> <img src="src/logo.png" alt="IMMD Logo" /></a>
+            </div>
+            <!-- Hamburger and Close Icons (shown only in mobile) -->
+            <button class="menu-toggle open">&#9776;</button>
+            <button class="menu-toggle close" style="display: none;">&times;</button>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+
+                    <li class="dropdown">
+                        <a href="#">Research</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="facilities.html">Facilities</a></li>
+                            <li><a href="activities.html">Activities</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="testing-consultancy.html">Testing Consultancy</a></li>
+                            <li><a href="experimental-consultancy.html">Experimental Consultancy</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#">Career</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ritp-consultancy.html">RITP Consultancy</a></li>
+                            <li><a href="sitp-consultancy.html">SITP Consultancy</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Insights</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="collabaration.html">Collaborations</a></li>
+                            <li><a href="mou.html">MoU's</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+        
+   <section class="facility-section container" style="margin-top: 20px;border-radius: 12px;">
+    <h3 class="section-title" style="font-size: 28px;
+      color: #1e40af;
+      margin-bottom: 24px;
+      border-bottom: 3px solid #93c5fd;
+      display: inline-block;
+      padding-bottom: 6px;">Facilities</h3>
+    <div class="facility">
+      <div class="facility-text">
+        <h3>Box Furnace</h3>
+        <p><strong>What is this?</strong> Furnaces are used to provide continuous heating to process samples and materials. They are generally built from carbide steel material so that they can maintain high temperatures without breaking down. Research furnaces are mainly used to study the structural nature of the materials at variable temperature. </p>
+        <p><strong>Specifications:</strong> Temperature: 1200 ºC, Maintained environment, Programmable control panel, 16 segment.</p>
+        <p><strong>Research Focus:</strong> Preparation of Inorganic compounds, Heat treatment process on various nanocomposite and bone materials.</p>
+      </div>
+      <div class="facility-img">
+        <img src="src/facilitiy-1.png" alt="Box Furnace">
+      </div>
+    </div>
+
+    <div class="facility reverse">
+      <div class="facility-text">
+        <h3>Ultrasonicator</h3>
+        <p><strong>What is this?</strong> It is used in the Process of applying sound energy through an ultrasonic bath or an ultrasonic probe to agitate particles in a sample material. It is used in academic, clinical and forensic laboratories that need to disintegrate cells, bacteria, spores or tissue.</p>
+        <p><strong>Specifications:</strong> Operated up to 60 ºC, 230 V, 15 Amps.</p>
+        <p><strong>Research Focus:</strong> Prepared Nanomaterials can be dispersed in to well defined particles which will be highly helpful in taking SEM/TEM photographs. It is also useful in the synthesis of nanocomposites.</p>
+      </div>
+      <div class="facility-img">
+        <img src="src/facilitiy-2.png" alt="Ultrasonicator">
+      </div>
+    </div>
+
+    <div class="facility">
+      <div class="facility-text">
+        <h3>Fume Cupboard</h3>
+        <p><strong>What is this?</strong> A fume cupboard is a ventilation apparatus designed to remove hazardous or toxic vapors, fumes, and dusts outside the laboratory. This type of laboratory equipment is designed to protect workers or researchers from inhaling toxic gases while protecting the product or the experiment.</p>
+        <p><strong>Specifications:</strong> 18 Inches height, 2 exhaust fan motors.</p>
+        <p><strong>Research Use:</strong> It is used in synthesizing organic and inorganic crystals, perovskites, nanocomposite. It is also used in temperature dependent synthesis and reflux processes. </p>
+      </div>
+      <div class="facility-img">
+        <img src="src/facilitiy-3.png" alt="Fume Cupboard">
+      </div>
+    </div>
+
+    <div class="facility reverse">
+      <div class="facility-text">
+        <h3>Constant Temperature Bath with cooling</h3>
+        <p><strong>What is this?</strong>Constant temperature bath (CTB) is used to perform certain chemical reactions which occur at high temperature. It is highly preferred to use for flammable chemicals in order to prevent ignition.</p>
+        <p><strong>Specifications:</strong> Temperature range from 20 to 60 ºC, Temperature controller and in/out water circulation.</p>
+        <p><strong>Research Focus:</strong> For the growth of single crystals, constant temperature should be maintained throughout its growth period. Temperature uniformity in and around the mother solution is more important in crystal growth to avoid secondary nucleation. By using CTB, slow evaporation as well as slow cooling process can be applied for the growth of crystals. </p>
+      </div>
+      <div class="facility-img">
+        <img src="src/facilitiy-4.png" alt="Constant Temperature Bath with cooling">
+      </div>
+    </div>
+
+    <div class="facility">
+      <div class="facility-text">
+        <h3>Hot Air Oven</h3>
+        <p><strong>What is this?</strong> A hot air oven is essential laboratory equipment that uses to dry heat (hot air) to sterilize laboratory components and samples. This type of sterilization is also known as dry heat sterilization.</p>
+        <p><strong>Specifications:</strong> Temperature range from room temperature to 200ºC along with a temperature controller.</p>
+        <p><strong>Research Focus:</strong> It is used to synthesize Inorganic Nanomaterials and Magnetic powders. It is also used in various low temperature heat treatment processes. It uses to sterilize laboratory components and samples.</p>
+      </div>
+      <div class="facility-img">
+        <img src="src/facilitiy-5.png" alt="Hot Air Oven">
+      </div>
+    </div>
+
+    <div class="facility reverse">
+      <div class="facility-text">
+        <h3>Hydrothermal Autoclave</h3>
+        <p><strong>What is this?</strong> The Hydrothermal Autoclave is used for hydrothermal reaction process at high pressure and high temperature. It is Polytetrafluoroethylene (PTFE) or Teflon lined hydrothermal autoclave. It consists of two parts; outer high-quality stainless steel jacket and inner Teflon liner or Teflon chamber. In the Teflon-lined autoclave, the reaction is carried out at maximum 240 ºC. However the safe temperature is 200 ºC. This apparatus is widely used in the scientific laboratory, research and development labs, quality analysis section in industries and institutional organizations.</p>
+        <p><strong>Specifications:</strong> Operating temperature: ≤ 240 °C, Safe temperature limit: 200 °C, Pressure: ≤ 3 MPa, Heating/Cooling Rate: ≤5 °C/min.</p>
+        <p><strong>Research Focus:</strong> It is used to synthesize Inorganic Nanomaterials and Magnetic powders. It is also used in various low temperature heat treatment processes.</p>
+      </div>
+      <div class="facility-img">
+        <img src="src/facilitiy-6.png" alt="Hydrothermal Autoclave">
+      </div>
+    </div>
+
+  </section>
+  
+
+    
+             
+
+    <footer>
+        <p>&copy; 2025 IMMD. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const openBtn = document.querySelector(".menu-toggle.open");
+        const closeBtn = document.querySelector(".menu-toggle.close");
+        const navLinks = document.querySelector(".nav-links");
+
+        openBtn.addEventListener("click", () => {
+            navLinks.classList.add("show");
+            openBtn.style.display = "none";
+            closeBtn.style.display = "block";
+        });
+
+        closeBtn.addEventListener("click", () => {
+            navLinks.classList.remove("show");
+            openBtn.style.display = "block";
+            closeBtn.style.display = "none";
+        });
+    </script>
+
+</body>
+
+</html>

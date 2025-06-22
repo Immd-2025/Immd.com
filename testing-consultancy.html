@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IMMD-Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+
+        header {
+            background-color: #ffffff;
+            color: #2c3e50;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .logo img {
+            width: 80px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 30px;
+            color: #2c3e50;
+            cursor: pointer;
+            position: absolute;
+            top: 22px;
+            right: 20px;
+            z-index: 1001;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 15px;
+            display: block;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li:hover>a {
+            background-color: #f0f4f8;
+            color: #1e40af;
+            border-radius: 8px;
+
+        }
+
+          .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            top: 100%;
+            left: 0;
+            min-width: 180px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 0;
+            /* remove default padding */
+            margin: 0;
+            /* ensure no extra margin */
+        }
+
+
+        .dropdown-menu li {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu li a {
+            padding: 8px 15px;
+            display: block;
+            color: #2c3e50;
+            background-color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f0f4f8;
+            color: #1e40af;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+      .testing-card {
+  background-color: #e9f0f7;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.testing-card:hover {
+  transform: scale(1.01);
+}
+
+.testing-card h3 {
+  color: #1e3a8a;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.testing-card h4 {
+  margin-top: 18px;
+  font-size: 16px;
+  color: #1e3a8a;
+}
+
+.testing-card p {
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+.testing-card ul {
+  list-style: disc;
+  margin-left: 20px;
+  color: #4b5563;
+}
+
+.testing-card ul li {
+  margin-bottom: 8px;
+}
+
+        footer {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+    
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                background-color: #fff;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+
+
+            nav ul li {
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+       
+        
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+  }
+
+  .dropdown {
+    position: relative;
+    width: 100%;
+    max-width: 320px; /* Keeps dropdown centered and compact */
+    margin: 0 auto;
+  }
+
+  .dropdown > a {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    font-weight: 500;
+    color: #2c3e50;
+    text-decoration: none;
+    background-color: #fff;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+  }
+
+  .dropdown > a::after {
+    content: ' ▼';
+    font-size: 0.7em;
+    float: right;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: static;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 0;
+    margin: 0;
+    animation: dropdownFade 0.3s ease-in-out;
+  }
+
+  .dropdown > a:focus + .dropdown-menu,
+  .dropdown > a:active + .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #333;
+    border-top: 1px solid #f0f0f0;
+    background-color: #fafafa;
+    transition: background-color 0.3s;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #f0f4f8;
+  }
+}
+
+/* Smooth dropdown animation */
+@keyframes dropdownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+       
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav-bar">
+            <div class="logo">
+                <a href="index.html"> <img src="src/logo.png" alt="IMMD Logo" /></a>
+            </div>
+            <!-- Hamburger and Close Icons (shown only in mobile) -->
+            <button class="menu-toggle open">&#9776;</button>
+            <button class="menu-toggle close" style="display: none;">&times;</button>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+
+                    <li class="dropdown">
+                        <a href="#">Research</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="facilities.html">Facilities</a></li>
+                            <li><a href="activities.html">Activities</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="testing-consultancy.html">Testing Consultancy</a></li>
+                            <li><a href="experimental-consultancy.html">Experimental Consultancy</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#">Career</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="ritp-consultancy.html">RITP Consultancy</a></li>
+                            <li><a href="sitp-consultancy.html">SITP Consultancy</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Insights</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="collabaration.html">Collaborations</a></li>
+                            <li><a href="mou.html">MoU's</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+   
+      <section class="container shared-content" style="margin-top: 50px;">
+  <h2 class="section-title" style="font-size: 28px;
+      color: #1e40af;
+      margin-bottom: 24px;
+      border-bottom: 3px solid #93c5fd;
+      display: inline-block;
+      padding-bottom: 6px;">Testing Consultancy</h2>
+
+  <!-- Instrument 1: Impedance Analyzer -->
+  <div class="testing-card">
+    <h3>1. Impedance Analyzer – LCR Meter</h3>
+    <p><strong>Instrument:</strong> HIOKI IM3536 LCR Meter</p>
+    <p><strong>Year of Installation:</strong> June, 2023</p>
+    <p><strong>Frequency Range:</strong> 50 Hz to 6 MHz</p>
+    <p><strong>Temperature Range:</strong> Room temperature to 150 °C</p>
+    <p><strong>Functions:</strong> L, C, R (ac), Q, tan δ, impedance, phase – Series or Parallel circuit</p>
+
+    <h4>About Instrument and its Applications:</h4>
+    <p>The impedance analyzer (HIOKI IM3536 LCR Meter) studies dielectric properties of samples across 50Hz–6MHz and temperatures up to 150°C. It provides Tan δ, Impedance, Cp, Rp, Rdc, Lp, Cs, Rs, Ls, Q-factor, Reactance, Admittance, Conductance, Susceptance, and phase data, from which dielectric constant, loss, complex permittivity, conductivity, and resistivity are calculated.</p>
+
+    <h4>Sample Requirements:</h4>
+    <ul>
+      <li>Pelletized powder (⌀ ≈10 mm, thickness ≈5 mm)</li>
+      <li>Crystals (L ≈10 mm, B ≈10 mm, T ≈5 mm), polished on all sides</li>
+      <li>Samples will not be returned</li>
+    </ul>
+
+    <h4>Charges:</h4>
+    <ul>
+      <li>₹700 per sample (up to 3 temperatures)</li>
+      <li>₹100 extra for each additional temperature</li>
+      <li>Pellet Preparation: ₹100 per sample</li>
+    </ul>
+  </div>
+
+  <!-- Instrument 2: Cyclic Voltammetry -->
+  <div class="testing-card">
+    <h3>2. Cyclic Voltammetry</h3>
+    <p><strong>Instrument:</strong> Admiral Squid Stat Solo</p>
+    <p><strong>Year of Installation:</strong> October, 2024</p>
+    <p><strong>Functions:</strong> Charge/Discharge (CC/CV), Chronoamperometry, Chronopotentiometry, Cyclic Voltammetry (CV), DPV, LSV, OCP Monitoring</p>
+
+    <h4>About Instrument and its Applications:</h4>
+    <p>Cyclic voltammetry (CV) is used to study redox properties via working, counter, and reference electrodes using a potentiostat. It aids in research on electro catalysis, biosensors, battery materials, pollutant detection, and drug analysis by providing insights into reaction kinetics and stability.</p>
+
+    <h4>Sample Requirements:</h4>
+    <ul>
+      <li>Electrode materials must be properly heat-treated</li>
+      <li>Samples will not be returned</li>
+    </ul>
+
+    <h4>Charges:</h4>
+    <ul>
+      <li>₹1000 per sample</li>
+      <li>Electrode Preparation: ₹500 per sample</li>
+    </ul>
+  </div>
+</section>
+
+
+             
+
+    <footer>
+        <p>&copy; 2025 IMMD. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const openBtn = document.querySelector(".menu-toggle.open");
+        const closeBtn = document.querySelector(".menu-toggle.close");
+        const navLinks = document.querySelector(".nav-links");
+
+        openBtn.addEventListener("click", () => {
+            navLinks.classList.add("show");
+            openBtn.style.display = "none";
+            closeBtn.style.display = "block";
+        });
+
+        closeBtn.addEventListener("click", () => {
+            navLinks.classList.remove("show");
+            openBtn.style.display = "block";
+            closeBtn.style.display = "none";
+        });
+    </script>
+
+</body>
+
+</html>
